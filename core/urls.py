@@ -6,7 +6,7 @@ from core import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1/", include("apps.clickpayment.urls")),
+    path("pyclick/", include("apps.clickpayment.urls")),
 ]
 
 urlpatterns += swagger_patterns
