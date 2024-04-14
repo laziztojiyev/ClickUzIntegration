@@ -92,10 +92,10 @@ SPECTACULAR_SETTINGS = {
 }
 
 CLICK_SETTINGS = {
-    "service_id": "1",
-    "merchant_id": "1",
-    "secret_key": "1",
-    "merchant_user": "1",
+    "service_id": os.getenv("CLICK_SERVICE_ID"),
+    "merchant_id": os.getenv("CLICK_MERCHANT_ID"),
+    "secret_key": os.getenv("CLICK_SECRET_KEY"),
+    "merchant_user": os.getenv("CLICK_MERCHANT_USER_ID"),
 }
 
 LANGUAGE_CODE = "en-us"
