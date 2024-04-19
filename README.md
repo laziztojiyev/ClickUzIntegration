@@ -5,8 +5,6 @@
 <h1>Интеграция сервиса онлайн оплаты CLICK SHOP API и Merchant API через фреймворк Django в Python</h1>
 </div>
 
-С помощью пакет `python-click` вы сможете очень легко интегрировать платежную систему CLICK. В этом руководстве показано, как интегрировать систему оплаты CLICK SHOP API и Merchant API. Через этот пакет вы сможете получать платежи за различные товары, услуги и покупки в Интернет Магазине. Более подробная информация об интеграции находится на официальной документации [OOO "Click"](https://docs.click.uz/)
-
 ## Необходимые пакеты
 [Django](https://docs.djangoproject.com/) - свободный фреймворк для веб-приложений на языке Python, использующий шаблон проектирования MVC.
 
@@ -15,11 +13,7 @@
 [Requests](https://requests.readthedocs.io/) - это элегантная и простая HTTP-библиотека для Python, созданная для людей.
 
 ## Установка
-Установите с помощью pip, включая любые дополнительные пакеты, которые вы хотите...
-```bash
-pip install python-click
-```
-...или клонируйте проект с github
+Клонируйте проект с github
 ```console
 git clone https://github.com/JahongirHakimjonov/ClickUzIntegration.git
 ```
@@ -28,7 +22,6 @@ git clone https://github.com/JahongirHakimjonov/ClickUzIntegration.git
 ```console
 INSTALLED_APPS = [
     ...
-    'pyclick',
     'rest_framework',
 ]
 
@@ -42,15 +35,7 @@ CLICK_SETTINGS = {
 > _**Примечание:**_
 > Эти информации будет предоставлена ​​вам после того, как вы подписали контракт с OOO «Click»
 
-Добавьте следующее в свой корневой каталог `urls.py` файл.
-```console
-from django.urls import include
 
-urlpatterns = [
-    ...
-    path('pyclick/', include('pyclick.urls')),
-]
-```
 Выполните команды `makemigrations` и `migrate`
 ```console
 python manage.py makemigrations
