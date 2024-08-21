@@ -133,11 +133,11 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False,  # the default; let .active_translations() return fallbacks too.
     }
 }
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+STATIC_URL = '/apps/static/'
+STATIC_ROOT = os.path.join(BASE_DIR / 'apps/static')
 # STATICFILES_DIRS = os.path.join(BASE_DIR / "static")
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
+MEDIA_URL = 'apps/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR / 'apps/media')
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
