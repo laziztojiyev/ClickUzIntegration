@@ -200,3 +200,4 @@ POST http://127.0.0.1:8000/pyclick/process/click/service/check_payment_status
   <span> | </span>
   <a href="https://t.me/ja_khan_gir">Telegram</a>
 </div>
+# ClickUzIntegration

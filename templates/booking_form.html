@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #218838;
+        }
+    </style>
+<body>
+<div class="container">
+    <h2>Booking Form</h2>
+
+    <form action="{% url 'booking' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">F.I.O.</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="packages">Packages</label>
+            <select id="packages" name="packages" required>
+                {% for package in packages %}
+                    <option value="{{ package.id }}">{{ package.name }}</option>
+                {% endfor %}
+            </select>
+            {% for package in packages %}
+                <a href="/packages/{{ package.slug }}" class="btn btn-primary">{{ package.name }} Details</a>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="additional-info">Additional Information</label>
+            <textarea id="additional-info" name="additional-info" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit Booking</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
