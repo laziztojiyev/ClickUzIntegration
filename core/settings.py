@@ -2,15 +2,15 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-st-+zk0amdt4plk9wd&#_ji$nvirwxd)59@yf#uvm5on_u9^t@"
+load_dotenv('.env')
 
-DEBUG = True
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ["*"]
+DEBUG = os.getenv('DEBUG')
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 INSTALLED_APPS = [
     "jazzmin",
@@ -26,6 +26,9 @@ INSTALLED_APPS = [
     "drf_spectacular_sidecar",
     "apps.clickpayment",
     "clickuz",
+    'django_ckeditor_5',
+    'parler',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -42,15 +45,15 @@ ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -59,9 +62,13 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
@@ -98,22 +105,147 @@ CLICK_SETTINGS = {
     "merchant_user": os.getenv("CLICK_MERCHANT_USER_ID"),
 }
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = 'en'
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Russian'),  # Added Russian
+]
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
-STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale")
+]
+PARLER_DEFAULT_LANGUAGE_CODE = 'en'
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en', },
+        {'code': 'ru', },
+    ),
+    'default': {
+        'fallback': 'en',  # defaults to PARLER_DEFAULT_LANGUAGE_CODE
+        'hide_untranslated': False,  # the default; let .active_translations() return fallbacks too.
+    }
+}
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+# STATICFILES_DIRS = os.path.join(BASE_DIR / "static")
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CKEDITOR_STORAGE_BACKEND = 'django.core.files.storage.FileSystemStorage'
+customColorPalette = [
+    {
+        'color': 'hsl(4, 90%, 58%)',
+        'label': 'Red'
+    },
+    {
+        'color': 'hsl(340, 82%, 52%)',
+        'label': 'Pink'
+    },
+    {
+        'color': 'hsl(291, 64%, 42%)',
+        'label': 'Purple'
+    },
+    {
+        'color': 'hsl(262, 52%, 47%)',
+        'label': 'Deep Purple'
+    },
+    {
+        'color': 'hsl(231, 48%, 48%)',
+        'label': 'Indigo'
+    },
+    {
+        'color': 'hsl(207, 90%, 54%)',
+        'label': 'Blue'
+    },
+]
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
+CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
+CKEDITOR_5_UPLOAD_FILE_TYPES = ['jpeg', 'pdf', 'png', 'jpg']  # optional
+CKEDITOR_5_CUSTOM_CSS = 'static/css/custom_ckeditor.css'  # optional
+# CKEDITOR_5_FILE_STORAGE = "apps.storage.CustomStorage"  # optional
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        # 'toolbar': ['heading', '|', 'bold', 'italic', 'link',
+        #             'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
+        'toolbar': 'full',
+        'extraPlugins': 'divarea',  # Make sure the divarea plugin is enabled
+        'contentsCss': ['/static/css/custom_ckeditor.css'],
+    },
+    'extends': {
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3',
+            '|',
+            'bulletedList', 'numberedList',
+            '|',
+            'blockQuote',
+        ],
+        'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+                    'code', 'subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
+                    'bulletedList', 'numberedList', 'todoList', '|', 'blockQuote', 'imageUpload', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
+                    'insertTable', ],
+        'image': {
+            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
+                        'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side', '|'],
+            'styles': [
+                'full',
+                'side',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+            ]
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+        },
+        'table': {
+            'contentToolbar': ['tableColumn', 'tableRow', 'mergeTableCells',
+                               'tableProperties', 'tableCellProperties'],
+            'tableProperties': {
+                'borderColors': customColorPalette,
+                'backgroundColors': customColorPalette
+            },
+            'tableCellProperties': {
+                'borderColors': customColorPalette,
+                'backgroundColors': customColorPalette
+            }
+        },
+        'heading': {
+            'options': [
+                {'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph'},
+                {'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1'},
+                {'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2'},
+                {'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3'}
+            ]
+        }
+    },
+    'list': {
+        'properties': {
+            'styles': 'true',
+            'startIndex': 'true',
+            'reversed': 'true',
+        }
+    },
+
+    }
+
+# settings.py
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'extraPlugins': 'divarea',  # Make sure the divarea plugin is enabled
+        'contentsCss': ['/static/css/custom_ckeditor.css'],
+    },
+}
 
 JAZZMIN_SETTINGS = {
     "site_title": "Django Rest API",

@@ -3,11 +3,16 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from .swagger import urlpatterns as swagger_patterns
 from core import settings
+from apps.clickpayment.views import set_language
+
 
 urlpatterns = [
+    path('i18n/set_language/', set_language, name='set_language'),
+    path('rosetta/', include('rosetta.urls')),
     path("admin/", admin.site.urls),
-    path("pyclick/", include("apps.clickpayment.urls")),
+    path("", include("apps.clickpayment.urls")),
 ]
+
 
 urlpatterns += swagger_patterns
 
