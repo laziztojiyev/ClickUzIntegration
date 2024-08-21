@@ -1,0 +1,36 @@
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.navbar-brand img {
+    width: 150px;
+    height: 40px;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar-toggler {
+    margin-left: auto;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.navbar-nav .nav-link {
+    padding-left: 15px;
+    padding-right: 15px;
+}

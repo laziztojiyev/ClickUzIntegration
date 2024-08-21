@@ -1,0 +1,13 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+#more {
+    display: none;
+}
+
+#more, #dots {
+    transition: all 0.3s ease;
+}

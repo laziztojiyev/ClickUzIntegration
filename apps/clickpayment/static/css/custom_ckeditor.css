@@ -1,0 +1,99 @@
+/* custom_ckeditor.css */
+
+/* Example styling for images */
+.ck.ck-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #ddd;
+    padding: 5px;
+    border-radius: 10px;
+}
+/*!* General styling for the editor *!*/
+/*.ck.ck-editor__editable {*/
+/*    !* Background color of the editor *!*/
+/*    background-color: #ffffff;*/
+
+/*    !* Font settings *!*/
+/*    font-family: Arial, sans-serif;*/
+/*    font-size: 16px;*/
+/*    color: #333333;*/
+
+/*    !* Padding inside the editor *!*/
+/*    padding: 10px;*/
+/*}*/
+
+/*!* Styling for paragraphs *!*/
+/*.ck.ck-editor__editable p {*/
+/*    margin: 0 0 1em;*/
+/*}*/
+
+/*!* Styling for headers *!*/
+/*.ck.ck-editor__editable h1,*/
+/*.ck.ck-editor__editable h2,*/
+/*.ck.ck-editor__editable h3,*/
+/*.ck.ck-editor__editable h4,*/
+/*.ck.ck-editor__editable h5,*/
+/*.ck.ck-editor__editable h6 {*/
+/*    color: #444444;*/
+/*    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+/*}*/
+
+/*!* Styling for links *!*/
+/*.ck.ck-editor__editable a {*/
+/*    color: #0066cc;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.ck.ck-editor__editable a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*!* Styling for blockquotes *!*/
+/*.ck.ck-editor__editable blockquote {*/
+/*    border-left: 4px solid #cccccc;*/
+/*    margin: 1em 0;*/
+/*    padding-left: 1em;*/
+/*    color: #666666;*/
+/*}*/
+
+/*!* Styling for lists *!*/
+/*.ck.ck-editor__editable ul,*/
+/*.ck.ck-editor__editable ol {*/
+/*    margin: 0 0 1em 1.5em;*/
+/*}*/
+
+/*.ck.ck-editor__editable ul li,*/
+/*.ck.ck-editor__editable ol li {*/
+/*    margin: 0.5em 0;*/
+/*}*/
+
+/*!* Styling for tables *!*/
+/*.ck.ck-editor__editable table {*/
+/*    border-collapse: collapse;*/
+/*    width: 100%;*/
+/*    margin-bottom: 1em;*/
+/*}*/
+
+/*.ck.ck-editor__editable th,*/
+/*.ck.ck-editor__editable td {*/
+/*    border: 1px solid #cccccc;*/
+/*    padding: 8px;*/
+/*    text-align: left;*/
+/*}*/
+
+/*!* Styling for code blocks *!*/
+/*.ck.ck-editor__editable code {*/
+/*    background-color: #f4f4f4;*/
+/*    padding: 2px 4px;*/
+/*    border-radius: 4px;*/
+/*}*/
+
+/*!* Styling for images *!*/
+/*.ck.ck-editor__editable img {*/
+/*    max-width: 100%;*/
+/*    height: auto;*/
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*}*/
